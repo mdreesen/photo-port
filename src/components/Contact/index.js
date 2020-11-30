@@ -65,15 +65,20 @@ function ContactForm() {
           <form id="contact-form" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Name:</label>
-              <input type="text" default={name} onChange={handleChange} name="name" />
+              <input type="text" default={name} onBlur={handleChange} name="name" />
             </div>
             <div>
               <label htmlFor="email">Email address:</label>
-              <input type="email" default={email} onChange={handleChange} name="email" />
+              <input type="email" default={email} onBlur={handleChange} name="email" />
             </div>
             <div>
               <label htmlFor="message">Message:</label>
-              <textarea name="message" default={message} onChange={handleChange} rows="5" />
+              <textarea name="message" default={message} onBlur={handleChange} rows="5" />
+              {errorMessage && (
+                <div>
+                    <p className="error-text">{errorMessage}</p>
+                </div>
+                )}
             </div>
             <button type="submit">Submit</button>
           </form>
