@@ -11,7 +11,8 @@ const PhotoList = ({ category }) => {
     // updated the current photo state using the setCurrentPhoto function with the data retrieved through the click event
     // used the spread operator "..." to add the index: i key value pare to the current photo state
     setCurrentPhoto({...image, index: i})
-    setIsModalOpen(true);
+    // setIsModalOpen is passed down to the child (to Modal)
+    setIsModalOpen(!isModalOpen);
   }
 
   const [photos] = useState([
@@ -114,9 +115,10 @@ const PhotoList = ({ category }) => {
 
   const currentPhotos = photos.filter((photo) => photo.category === category);
 
+  // passing the "onClose" prop to the child (Modal)
   return (
     <div>
-    {isModalOpen && <Modal currentPhoto={currentPhoto}/>}
+    {isModalOpen && <Modal currentPhoto={currentPhoto} onClose={toggleModal}/>}
       <div className="flex-row">
         {currentPhotos.map((image, i) => (
           <img
